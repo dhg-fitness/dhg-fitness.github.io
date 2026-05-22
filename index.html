@@ -244,9 +244,51 @@
       tbody tr:nth-child(even) { background: #f3fbfc; }
       tbody tr:nth-child(odd) { background: #ffffff; }
     }
+  
+    /* Only Calories, Protein and Fibre are interactive */
+    thead th {
+      cursor: default !important;
+    }
+
+    thead th:not(.sortable-head) {
+      color: var(--muted) !important;
+    }
+
+    thead th:not(.sortable-head):hover,
+    thead th:not(.sortable-head):focus,
+    thead th:not(.sortable-head):focus-within {
+      background: transparent !important;
+      color: var(--muted) !important;
+      box-shadow: none !important;
+      transform: none !important;
+    }
+
+    thead th:not(.sortable-head) button {
+      pointer-events: none !important;
+    }
+
+    thead th.sortable-head,
+    thead th.sortable-head button {
+      cursor: pointer !important;
+    }
+
+    thead th.sortable-head button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.35rem;
+      width: 100%;
+      color: inherit;
+    }
+
+    thead th.sortable-head:hover {
+      background: rgba(17, 184, 200, 0.12) !important;
+      color: var(--white) !important;
+    }
+
   </style>
   <!-- DHG social preview version: v4 -->
-  <!-- DHG table sort version: only calories, protein and fibre sortable -->
+  <!-- DHG table sort version: v6 only calories, protein and fibre are interactive -->
 </head>
 <body>
   <div class="wrap">
@@ -278,9 +320,9 @@
               <th class="rank-head">#</th>
               <th>Food</th>
               <th>Typical portion</th>
-              <th class="numeric"><button data-key="kcal" data-type="number">Calories <span class="arrow"></span></button></th>
-              <th class="numeric"><button data-key="protein" data-type="number">Protein (g) <span class="arrow"></span></button></th>
-              <th class="numeric"><button data-key="fibre" data-type="number">Fibre (g) <span class="arrow"></span></button></th>
+              <th class="numeric sortable-head"><button type="button" data-key="kcal" data-type="number" aria-label="Sort by calories">Calories <span class="arrow"></span></button></th>
+              <th class="numeric sortable-head"><button type="button" data-key="protein" data-type="number" aria-label="Sort by protein">Protein (g) <span class="arrow"></span></button></th>
+              <th class="numeric sortable-head"><button type="button" data-key="fibre" data-type="number" aria-label="Sort by fibre">Fibre (g) <span class="arrow"></span></button></th>
               <th>Suggested daily portions</th>
               <th>Best use</th>
             </tr>
@@ -301,7 +343,7 @@ let data = [...originalData];
 let currentSort = { key: 'kcal', direction: 'asc' };
 
 const tbody = document.querySelector('#foodTable tbody');
-const buttons = document.querySelectorAll('thead button');
+const buttons = document.querySelectorAll('thead th.sortable-head button');
 
 function formatNumber(value) {
   return Number(value).toFixed(1).replace(/\.0$/, '');
