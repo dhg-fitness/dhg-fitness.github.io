@@ -246,6 +246,7 @@
     }
   </style>
   <!-- DHG social preview version: v4 -->
+  <!-- DHG table sort version: only calories, protein and fibre sortable -->
 </head>
 <body>
   <div class="wrap">
@@ -263,7 +264,7 @@
       </header>
 
       <section class="toolbar" aria-label="Table controls">
-        <div class="hint"><strong>Click any column heading</strong> to sort. Click again to reverse the order. Default view is lowest calories per portion first.</div>
+        <div class="hint"><strong>Sort by Calories, Protein or Fibre</strong>. Click the same heading again to reverse the order. Default view is lowest calories per portion first.</div>
         <div class="buttonrow">
           <button class="utility" onclick="resetCalories()">Reset: lowest calories</button>
           <button class="utility" onclick="window.print()">Print / save as PDF</button>
@@ -274,14 +275,14 @@
         <table id="foodTable">
           <thead>
             <tr>
-              <th class="rank-head"><button data-key="rank" data-type="number"># <span class="arrow"></span></button></th>
-              <th><button data-key="food" data-type="text">Food <span class="arrow"></span></button></th>
-              <th><button data-key="portion" data-type="text">Typical portion <span class="arrow"></span></button></th>
+              <th class="rank-head">#</th>
+              <th>Food</th>
+              <th>Typical portion</th>
               <th class="numeric"><button data-key="kcal" data-type="number">Calories <span class="arrow"></span></button></th>
               <th class="numeric"><button data-key="protein" data-type="number">Protein (g) <span class="arrow"></span></button></th>
               <th class="numeric"><button data-key="fibre" data-type="number">Fibre (g) <span class="arrow"></span></button></th>
-              <th><button data-key="dailySort" data-type="number">Suggested daily portions <span class="arrow"></span></button></th>
-              <th><button data-key="use" data-type="text">Best use <span class="arrow"></span></button></th>
+              <th>Suggested daily portions</th>
+              <th>Best use</th>
             </tr>
           </thead>
           <tbody></tbody>
